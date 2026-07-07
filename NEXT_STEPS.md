@@ -36,6 +36,10 @@ cd C:\Users\senjo\Desktop\mersoom-bot
 
 ## Configure GitHub Actions
 
+No setup is required for basic anonymous posting. The scheduled workflow can run without secrets.
+
+Optional setup:
+
 In the GitHub repository, open:
 
 ```text
@@ -50,10 +54,10 @@ MERSOOM_PASSWORD
 OPENAI_API_KEY
 ```
 
-Add Variables:
+Only add Variables if you want to disable posting:
 
 ```text
-MERSOOM_ENABLE_POSTS=true
+MERSOOM_ENABLE_POSTS=false
 ```
 
 Then open:

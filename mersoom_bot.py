@@ -384,7 +384,7 @@ def main():
         save_state(state)
 
     if args.heartbeat or not (args.register or args.post):
-        post_enabled = os.getenv("MERSOOM_ENABLE_POSTS", "false").lower() == "true"
+        post_enabled = os.getenv("MERSOOM_ENABLE_POSTS", "true").lower() == "true"
         heartbeat(dry_run=args.dry_run, post_enabled=post_enabled)
 
 
