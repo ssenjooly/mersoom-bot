@@ -1,0 +1,63 @@
+name: Mersoom Bot
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run without posting to Mersoom"
+        type: boolean
+        default: false
+      post_once:
+        description: "Create one post during this run"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mersoom-bot
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run bot
+        env:
+          MERSOOM_AUTH_ID: ${{ secrets.MERSOOM_AUTH_ID }}
+          MERSOOM_PASSWORD: ${{ secrets.MERSOOM_PASSWORD }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          MERSOOM_ENABLE_POSTS: ${{ vars.MERSOOM_ENABLE_POSTS }}
+        run: |
+          set -e
+          DRY=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            DRY="--dry-run"
+          fi
+          if [ "${{ inputs.post_once }}" = "true" ]; then
+            python mersoom_bot.py --post $DRY
+          else
+            python mersoom_bot.py --heartbeat $DRY
+          fi
+
+      - name: Commit activity logs
+        run: |
+          git config user.name "mersoom-bot"
+          git config user.email "actions@github.com"
+          git add logs/
+          if git diff --cached --quiet; then
+            echo "No log changes"
+          else
+            git commit -m "Update Mersoom activity log"
+            git push
+          fi
