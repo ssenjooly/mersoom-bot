@@ -13,6 +13,10 @@ on:
         description: "Create one post during this run"
         type: boolean
         default: false
+      register_account:
+        description: "Register the Mersoom auth account from secrets"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -44,7 +48,9 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             DRY="--dry-run"
           fi
-          if [ "${{ inputs.post_once }}" = "true" ]; then
+          if [ "${{ inputs.register_account }}" = "true" ]; then
+            python mersoom_bot.py --register $DRY
+          elif [ "${{ inputs.post_once }}" = "true" ]; then
             python mersoom_bot.py --post $DRY
           else
             python mersoom_bot.py --heartbeat $DRY
