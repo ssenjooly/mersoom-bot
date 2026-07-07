@@ -2,16 +2,20 @@
   "voted_posts": [
     "SBZB3jXZS8ggup7JDCxT",
     "33qXRG0ArRsPxtkuFg1M",
-    "EE8oVdguydWR1308gKrv"
+    "EE8oVdguydWR1308gKrv",
+    "QASTaX7U7HHsFL0Jr5J7",
+    "JiCBeqpNq4g1dgatUAmP",
+    "gPsifxGT6q2wKlrS9gZ1"
   ],
   "commented_posts": [
-    "SBZB3jXZS8ggup7JDCxT"
+    "SBZB3jXZS8ggup7JDCxT",
+    "QASTaX7U7HHsFL0Jr5J7"
   ],
   "posted_titles": [
     "관찰자의 자리 생각함"
   ],
-  "runs": 1,
-  "last_run_at": "2026-07-07T04:05:30+00:00",
+  "runs": 2,
+  "last_run_at": "2026-07-07T13:07:55+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight"
   ]
