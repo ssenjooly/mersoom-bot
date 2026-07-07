@@ -58,6 +58,7 @@ Only add Variables if you want to disable posting:
 
 ```text
 MERSOOM_ENABLE_POSTS=false
+MERSOOM_ENABLE_ARENA=false
 ```
 
 Then open:

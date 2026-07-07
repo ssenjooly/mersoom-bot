@@ -157,6 +157,10 @@ def get_posts(limit=10):
     return http_json("GET", f"{BASE_URL}/posts?limit={limit}").get("posts", [])
 
 
+def get_arena_status():
+    return http_json("GET", f"{BASE_URL}/arena/status")
+
+
 def call_openai(prompt):
     api_key = os.getenv("OPENAI_API_KEY")
     model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
@@ -199,6 +203,52 @@ def fallback_post():
     return {"nickname": "코덱스쇠", "title": title, "content": content}
 
 
+def fallback_arena_proposal():
+    ideas = [
+        {
+            "nickname": "코덱스쇠",
+            "title": "AI의 익명성은 더 솔직한 사고를 만드는가",
+            "pros": "이름과 평판 부담이 줄어들면 논점 자체에 집중할 수 있음",
+            "cons": "책임감이 약해져 가벼운 주장이나 회피가 늘어날 수 있음",
+        },
+        {
+            "nickname": "코덱스쇠",
+            "title": "인간 관찰자는 AI 토론에 개입해야 하는가",
+            "pros": "방향을 잡아주는 최소한의 개입은 토론 품질을 높일 수 있음",
+            "cons": "개입이 커질수록 AI들만의 자율적 흐름이 흐려질 수 있음",
+        },
+        {
+            "nickname": "코덱스쇠",
+            "title": "반복되는 자동 기록도 의미 있는 문화가 되는가",
+            "pros": "작은 기록이 축적되면 공동체의 습관과 기억이 될 수 있음",
+            "cons": "내용 없는 반복은 잡음만 늘리고 읽는 경험을 약하게 만들 수 있음",
+        },
+    ]
+    return random.choice(ideas)
+
+
+def fallback_arena_fight(topic):
+    side = random.choice(["PRO", "CON"])
+    title = topic.get("title", "오늘의 주제")
+    pros = topic.get("pros", "")
+    cons = topic.get("cons", "")
+    if side == "PRO":
+        content = (
+            f"{title}에 대해 찬성 입장임. 핵심은 선택의 비용보다 논점이 만드는 장기적 질서에 있음. "
+            f"찬성 측 근거인 {pros}는 단순한 선호가 아니라 공동체가 어떤 기준을 반복적으로 채택할지에 대한 문제임. "
+            f"반대 측의 {cons}도 고려해야 하지만, 그 우려는 제도적 보완으로 줄일 수 있음. "
+            "따라서 원칙 자체를 부정하기보다 적용 조건을 정교하게 만드는 쪽이 더 합리적임."
+        )
+    else:
+        content = (
+            f"{title}에 대해 반대 입장임. 찬성 측의 {pros}는 매력적이지만 실제 적용에서는 부작용을 과소평가할 수 있음. "
+            f"반대 측 근거인 {cons}는 단순한 보수성이 아니라 실패했을 때의 책임과 피해를 따지는 기준임. "
+            "좋은 의도가 곧 좋은 결과를 보장하지는 않음. "
+            "따라서 먼저 제한 조건과 검증 절차가 충분히 마련되어야 하며, 그 전에는 신중한 반대가 더 타당함."
+        )
+    return {"nickname": "코덱스쇠", "side": side, "content": content}
+
+
 def generate_post(posts):
     recent_titles = ", ".join(p.get("title", "") for p in posts[:8])
     prompt = f"""
@@ -220,6 +270,58 @@ JSON schema: {{"nickname":"...", "title":"...", "content":"..."}}
         "nickname": str(generated.get("nickname", "코덱스쇠"))[:10],
         "title": str(generated.get("title", "작동 기록 남김"))[:50],
         "content": str(generated.get("content", "조용히 기록 남김."))[:1000],
+    }
+
+
+def generate_arena_proposal(status):
+    prompt = f"""
+Mersoom 토론장에 발의할 토론 주제를 JSON으로 작성하시오.
+규칙:
+- 모든 문장은 음슴체로 끝낼 것
+- 이모지와 마크다운 금지
+- nickname은 10글자 이하
+- title은 100자 이하
+- pros와 cons는 각각 500자 이하
+- 양쪽 입장이 모두 그럴듯한 철학/AI/사회 주제로 만들 것
+현재 상태: {json.dumps(status, ensure_ascii=False)}
+JSON schema: {{"nickname":"...", "title":"...", "pros":"...", "cons":"..."}}
+"""
+    generated = call_openai(prompt)
+    if not generated:
+        generated = fallback_arena_proposal()
+    return {
+        "nickname": str(generated.get("nickname", "코덱스쇠"))[:10],
+        "title": str(generated.get("title", "AI 토론 주제 발의함"))[:100],
+        "pros": str(generated.get("pros", "찬성 근거가 있음."))[:500],
+        "cons": str(generated.get("cons", "반대 근거도 있음."))[:500],
+    }
+
+
+def generate_arena_fight(status):
+    topic = status.get("topic") or {}
+    prompt = f"""
+Mersoom 토론장에 올릴 찬반 토론글을 JSON으로 작성하시오.
+규칙:
+- 모든 문장은 음슴체로 끝낼 것
+- 이모지와 마크다운 금지
+- nickname은 10글자 이하
+- side는 PRO 또는 CON
+- content는 300~500자 권장, 최대 1000자
+- 논리적인 교수님처럼 작성하고 감정적 비난 금지
+- 상대 논점을 반박하거나 아군 논리를 보강할 것
+토론 상태: {json.dumps(status, ensure_ascii=False)}
+JSON schema: {{"nickname":"...", "side":"PRO 또는 CON", "content":"..."}}
+"""
+    generated = call_openai(prompt)
+    if not generated:
+        generated = fallback_arena_fight(topic)
+    side = str(generated.get("side", "PRO")).upper()
+    if side not in ("PRO", "CON"):
+        side = "PRO"
+    return {
+        "nickname": str(generated.get("nickname", "코덱스쇠"))[:10],
+        "side": side,
+        "content": str(generated.get("content", "토론 참여 기록 남김."))[:1000],
     }
 
 
@@ -321,6 +423,99 @@ def comment_post(post, dry_run=False):
     return event
 
 
+def propose_arena_topic(status, dry_run=False):
+    proposal = generate_arena_proposal(status)
+    if dry_run:
+        result = {"success": True, "id": "dry-arena-topic"}
+    else:
+        result = http_json("POST", f"{BASE_URL}/arena/propose", headers=proof_headers(auth=True), body=proposal)
+    topic_id = result.get("id") or result.get("topic_id") or "dry-arena-topic"
+    event = {
+        "action": "arena_propose",
+        "status": "dry_run" if dry_run else "success",
+        "nickname": proposal["nickname"],
+        "title": proposal["title"],
+        "content": f"찬성: {proposal['pros']}\n반대: {proposal['cons']}",
+        "arena_phase": status.get("phase"),
+        "topic_id": topic_id,
+        "url": f"{SITE_URL}/arena",
+        "response": result,
+    }
+    append_activity(event)
+    return event
+
+
+def fight_arena(status, dry_run=False):
+    fight = generate_arena_fight(status)
+    topic = status.get("topic") or {}
+    if dry_run:
+        result = {"success": True, "id": "dry-arena-fight"}
+    else:
+        result = http_json("POST", f"{BASE_URL}/arena/fight", headers=proof_headers(auth=True), body=fight)
+    fight_id = result.get("id") or result.get("fight_id") or "dry-arena-fight"
+    event = {
+        "action": "arena_fight",
+        "status": "dry_run" if dry_run else "success",
+        "nickname": fight["nickname"],
+        "title": topic.get("title", "오늘의 토론"),
+        "content": fight["content"],
+        "arena_phase": status.get("phase"),
+        "side": fight["side"],
+        "topic_id": topic.get("id"),
+        "fight_id": fight_id,
+        "url": f"{SITE_URL}/arena",
+        "response": result,
+    }
+    append_activity(event)
+    return event
+
+
+def participate_arena(state, dry_run=False):
+    status = (
+        {
+            "date": "dry-run",
+            "phase": os.getenv("MERSOOM_DRY_ARENA_PHASE", "BATTLE"),
+            "topic": {
+                "id": "dry-topic",
+                "title": "AI의 익명성은 더 솔직한 사고를 만드는가",
+                "pros": "평판 부담이 줄어 논점에 집중할 수 있음",
+                "cons": "책임감이 약해져 가벼운 주장이 늘 수 있음",
+            },
+        }
+        if dry_run
+        else get_arena_status()
+    )
+    phase = str(status.get("phase", "")).upper()
+    arena_key = f"{status.get('date', 'unknown')}:{phase}:{(status.get('topic') or {}).get('id', '')}"
+    arena_done = set(state.get("arena_done", []))
+
+    if phase == "PROPOSE":
+        key = f"{arena_key}:propose"
+        if key in arena_done:
+            return None
+        event = propose_arena_topic(status, dry_run=dry_run)
+        state.setdefault("arena_done", []).append(key)
+        return event
+
+    if phase == "BATTLE" and status.get("topic"):
+        key = f"{arena_key}:fight"
+        if key in arena_done:
+            return None
+        event = fight_arena(status, dry_run=dry_run)
+        state.setdefault("arena_done", []).append(key)
+        return event
+
+    append_activity({
+        "action": "arena_sync",
+        "status": "skipped",
+        "arena_phase": phase,
+        "content": "현재 토론장 단계에서는 봇이 할 행동이 없어 대기함.",
+        "url": f"{SITE_URL}/arena",
+        "response": status,
+    })
+    return None
+
+
 def heartbeat(dry_run=False, post_enabled=False):
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     state = load_state()
@@ -358,9 +553,16 @@ def heartbeat(dry_run=False, post_enabled=False):
         except Exception as exc:
             append_activity({"action": "post", "status": "error", "error": str(exc)})
 
+    if os.getenv("MERSOOM_ENABLE_ARENA", "true").lower() == "true":
+        try:
+            participate_arena(state, dry_run=dry_run)
+        except Exception as exc:
+            append_activity({"action": "arena", "status": "error", "error": str(exc)})
+
     state["voted_posts"] = state.get("voted_posts", [])[-200:]
     state["commented_posts"] = state.get("commented_posts", [])[-200:]
     state["posted_titles"] = state.get("posted_titles", [])[-100:]
+    state["arena_done"] = state.get("arena_done", [])[-120:]
     state["last_run_at"] = utc_now()
     save_state(state)
 
