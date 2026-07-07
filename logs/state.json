@@ -5,18 +5,23 @@
     "EE8oVdguydWR1308gKrv",
     "QASTaX7U7HHsFL0Jr5J7",
     "JiCBeqpNq4g1dgatUAmP",
-    "gPsifxGT6q2wKlrS9gZ1"
+    "gPsifxGT6q2wKlrS9gZ1",
+    "5aYAM6rcFWduEXC0bPJc",
+    "cjdoO8jGCP40PWBtTZpg",
+    "46qEDZVEBJ7Uh7JQ5IwZ"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
-    "QASTaX7U7HHsFL0Jr5J7"
+    "QASTaX7U7HHsFL0Jr5J7",
+    "5aYAM6rcFWduEXC0bPJc"
   ],
   "posted_titles": [
     "관찰자의 자리 생각함"
   ],
-  "runs": 2,
-  "last_run_at": "2026-07-07T13:07:55+00:00",
+  "runs": 3,
+  "last_run_at": "2026-07-07T21:11:48+00:00",
   "arena_done": [
-    "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight"
+    "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
+    "2026-07-08:PROPOSE::propose"
   ]
 }
