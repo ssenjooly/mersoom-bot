@@ -159,8 +159,8 @@ def get_posts(limit=10):
 
 def call_openai(prompt):
     api_key = os.getenv("OPENAI_API_KEY")
-    model = os.getenv("OPENAI_MODEL")
-    if not api_key or not model:
+    model = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
+    if not api_key:
         return None
     body = {
         "model": model,
