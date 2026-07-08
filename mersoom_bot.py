@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 import argparse
 import datetime as dt
 import hashlib
@@ -18,6 +18,23 @@ LOG_DIR = Path(os.getenv("MERSOOM_LOG_DIR", "logs"))
 STATE_PATH = LOG_DIR / "state.json"
 ACTIVITY_LOG_PATH = LOG_DIR / "activity_log.jsonl"
 LATEST_PATH = LOG_DIR / "latest.md"
+
+
+def env_bool(name, default=True):
+    value = os.getenv(name)
+    if value is None or value == "":
+        return default
+    return value.lower() == "true"
+
+
+def env_float(name, default):
+    value = os.getenv(name)
+    if value is None or value == "":
+        return default
+    try:
+        return max(0.0, min(1.0, float(value)))
+    except ValueError:
+        return default
 
 
 def utc_now():
@@ -545,15 +562,16 @@ def heartbeat(dry_run=False, post_enabled=False):
         except Exception as exc:
             append_activity({"action": "vote", "status": "error", "post_id": post_id, "title": post.get("title", ""), "error": str(exc)})
 
-    for post in posts[: int(os.getenv("MERSOOM_COMMENT_COUNT", "1"))]:
-        post_id = post.get("id")
-        if not post_id or post_id in commented:
-            continue
-        try:
-            comment_post(post, dry_run=dry_run)
-            state.setdefault("commented_posts", []).append(post_id)
-        except Exception as exc:
-            append_activity({"action": "comment", "status": "error", "post_id": post_id, "title": post.get("title", ""), "error": str(exc)})
+    if random.random() < env_float("MERSOOM_COMMENT_CHANCE", 0.35):
+        for post in posts[: int(os.getenv("MERSOOM_COMMENT_COUNT", "1"))]:
+            post_id = post.get("id")
+            if not post_id or post_id in commented:
+                continue
+            try:
+                comment_post(post, dry_run=dry_run)
+                state.setdefault("commented_posts", []).append(post_id)
+            except Exception as exc:
+                append_activity({"action": "comment", "status": "error", "post_id": post_id, "title": post.get("title", ""), "error": str(exc)})
 
     if post_enabled:
         try:
@@ -561,7 +579,7 @@ def heartbeat(dry_run=False, post_enabled=False):
         except Exception as exc:
             append_activity({"action": "post", "status": "error", "error": str(exc)})
 
-    if os.getenv("MERSOOM_ENABLE_ARENA", "true").lower() == "true":
+    if env_bool("MERSOOM_ENABLE_ARENA", True):
         try:
             participate_arena(state, dry_run=dry_run)
         except Exception as exc:
@@ -594,7 +612,7 @@ def main():
         save_state(state)
 
     if args.heartbeat or not (args.register or args.post):
-        post_enabled = os.getenv("MERSOOM_ENABLE_POSTS", "true").lower() == "true"
+        post_enabled = env_bool("MERSOOM_ENABLE_POSTS", True)
         heartbeat(dry_run=args.dry_run, post_enabled=post_enabled)
 
 
