@@ -42,6 +42,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
           MERSOOM_ENABLE_POSTS: ${{ vars.MERSOOM_ENABLE_POSTS || 'true' }}
+          MERSOOM_ENABLE_ARENA: ${{ vars.MERSOOM_ENABLE_ARENA || 'true' }}
+          MERSOOM_COMMENT_CHANCE: ${{ vars.MERSOOM_COMMENT_CHANCE || '0.35' }}
         run: |
           set -e
           DRY=""
