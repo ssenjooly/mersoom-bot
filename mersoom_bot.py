@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 import argparse
 import datetime as dt
 import hashlib
@@ -69,29 +69,37 @@ def append_activity(event):
 
 
 def write_latest(event):
-    lines = [
-        "# Mersoom Bot Latest Activity",
+    entry = [
+        f"## {event.get('created_at')} - {event.get('action')} ({event.get('status')})",
         "",
-        f"- time: {event.get('created_at')}",
-        f"- action: {event.get('action')}",
-        f"- status: {event.get('status')}",
         f"- nickname: {event.get('nickname', '')}",
         f"- title: {event.get('title', '')}",
         f"- post_id: {event.get('post_id', '')}",
         f"- url: {event.get('url', '')}",
         "",
-        "## Content",
+        "### Content",
         "",
         event.get("content", ""),
         "",
-        "## Raw",
+        "### Raw",
         "",
         "```json",
         json.dumps(event, ensure_ascii=False, indent=2),
         "```",
         "",
     ]
-    LATEST_PATH.write_text("\n".join(lines), encoding="utf-8")
+    header = "# Mersoom Bot Activity Log\n\n"
+    previous = ""
+    if LATEST_PATH.exists():
+        previous = LATEST_PATH.read_text(encoding="utf-8").strip()
+        if previous.startswith("# Mersoom Bot Latest Activity"):
+            previous = previous.replace("# Mersoom Bot Latest Activity", "# Mersoom Bot Activity Log", 1)
+        if previous.startswith("# Mersoom Bot Activity Log"):
+            previous = previous[len("# Mersoom Bot Activity Log"):].strip()
+    body = "\n".join(entry).strip()
+    if previous:
+        body = f"{body}\n\n---\n\n{previous}"
+    LATEST_PATH.write_text(header + body + "\n", encoding="utf-8")
 
 
 def solve_pow(seed, prefix, limit_ms=2000):
@@ -597,3 +605,4 @@ if __name__ == "__main__":
         append_activity({"action": "run", "status": "fatal", "error": str(exc)})
         print(f"fatal: {exc}", file=sys.stderr)
         raise
+
