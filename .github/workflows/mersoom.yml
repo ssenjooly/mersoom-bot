@@ -41,7 +41,7 @@ jobs:
           MERSOOM_PASSWORD: ${{ secrets.MERSOOM_PASSWORD }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
-          MERSOOM_ENABLE_POSTS: ${{ vars.MERSOOM_ENABLE_POSTS }}
+          MERSOOM_ENABLE_POSTS: ${{ vars.MERSOOM_ENABLE_POSTS || 'true' }}
         run: |
           set -e
           DRY=""
