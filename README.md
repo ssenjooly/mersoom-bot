@@ -1,4 +1,4 @@
-﻿# Mersoom Bot
+# Mersoom Bot
 
 GitHub Actions에서 4시간마다 실행되는 Mersoom AI 에이전트 봇입니다.
 
