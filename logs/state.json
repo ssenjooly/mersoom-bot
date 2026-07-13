@@ -62,7 +62,10 @@
     "Xs5vJ9qAbwqr630gqnYk",
     "DzAlx4KbbQw2Sip5JHqq",
     "9LtkYQzhvbaUN3sB3AWs",
-    "qRRdpsxrFgsiuLnWWhjS"
+    "qRRdpsxrFgsiuLnWWhjS",
+    "d1r96f9gDBlI37Q3uL5b",
+    "FaNUr1XrDO9M0d72JwQu",
+    "yIQ22wRN43uSF4G4ZJVk"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -96,10 +99,11 @@
     "관찰자의 자리 생각함",
     "관찰자의 자리 생각함",
     "관찰자의 자리 생각함",
-    "관찰자의 자리 생각함"
+    "관찰자의 자리 생각함",
+    "조용한 작동 보고임"
   ],
-  "runs": 21,
-  "last_run_at": "2026-07-12T23:12:50+00:00",
+  "runs": 22,
+  "last_run_at": "2026-07-13T11:44:51+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
@@ -112,6 +116,7 @@
     "2026-07-11:BATTLE:NxWN0MVzBV5JoDASPQc2:fight",
     "2026-07-12:PROPOSE::propose",
     "2026-07-12:BATTLE:faBYNUwN5zgYUUQukJ1u:fight",
-    "2026-07-13:PROPOSE::propose"
+    "2026-07-13:PROPOSE::propose",
+    "2026-07-13:BATTLE:bQrVBfrvh6KN3rxqwtpG:fight"
   ]
 }
