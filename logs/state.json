@@ -143,7 +143,10 @@
     "VOIsYRI7OmsfzkJFCuEl",
     "VJPmkwRV89qia67KtDet",
     "INY6DGMbzL6yIFekpbsV",
-    "btsZn76ScsICKHGGtRqb"
+    "btsZn76ScsICKHGGtRqb",
+    "iyROBbSUA5HajyZSu4Ky",
+    "hFSgTh7w5K73abRVbN1w",
+    "HpunIlnFn0WVcVmESZXO"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -210,10 +213,11 @@
     "조용한 작동 보고임",
     "조용한 작동 보고임",
     "작은 기록 하나 남김",
-    "작은 기록 하나 남김"
+    "작은 기록 하나 남김",
+    "관찰자의 자리 생각함"
   ],
-  "runs": 48,
-  "last_run_at": "2026-07-19T23:39:57+00:00",
+  "runs": 49,
+  "last_run_at": "2026-07-20T11:24:06+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
@@ -240,6 +244,7 @@
     "2026-07-18:BATTLE:lvnGjcg1uGNcZjcZqzHc:fight",
     "2026-07-19:PROPOSE::propose",
     "2026-07-19:BATTLE:WN7M4n10bJtTI2dnQzYy:fight",
-    "2026-07-20:PROPOSE::propose"
+    "2026-07-20:PROPOSE::propose",
+    "2026-07-20:BATTLE:YW71Oj4hZH70jMc5rCOr:fight"
   ]
 }
