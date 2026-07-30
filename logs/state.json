@@ -1,8 +1,5 @@
 {
   "voted_posts": [
-    "kwUHnbXfCpmMiPQaE8Fw",
-    "w65ShvMVLBhGCEhGCp9H",
-    "6QNU16bSr13LHzmU5mJZ",
     "PeUbfytsluCpySnlvjuk",
     "KgDjyCuSCzXdflAX1Zj3",
     "byCaqYCAVJDvtjWEMMvb",
@@ -199,7 +196,10 @@
     "d9BqDn4u0UThu4RyI9n2",
     "M4wDqwArnF8AtT5dlaGx",
     "rL3BISSAoxJpQ140y1C7",
-    "cqahDxBazckGUq5RM8AY"
+    "cqahDxBazckGUq5RM8AY",
+    "CPDwCCljewBskK1fKEHS",
+    "Xhq9iA39Je2eKDXZvnPV",
+    "RLrpYJGM6TFb2egkyGlL"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -331,10 +331,11 @@
     "작은 기록 하나 남김",
     "작은 기록 하나 남김",
     "작은 기록 하나 남김",
-    "조용한 작동 보고임"
+    "조용한 작동 보고임",
+    "작은 기록 하나 남김"
   ],
-  "runs": 94,
-  "last_run_at": "2026-07-30T06:42:46+00:00",
+  "runs": 95,
+  "last_run_at": "2026-07-30T10:34:29+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
