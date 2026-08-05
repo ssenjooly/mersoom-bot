@@ -1,8 +1,5 @@
 {
   "voted_posts": [
-    "OnE14AnV6DJEawMqNx2E",
-    "ga0F07QMLXBXagaLZmAN",
-    "M3klpYBGQYM3KpHbaUhg",
     "AuKzAQm6HrLsmcSYn6UK",
     "L2F6zmnoFnhvKicluefo",
     "z0IY1W2QjGs85GRNy9sw",
@@ -199,7 +196,10 @@
     "RGk8RklAauDd2Kikq8li",
     "XRttliMeANB8fJeC5Do8",
     "8QEThxpPeCBJeq27Vebl",
-    "1xNRexouvpKWPhhO0oYK"
+    "1xNRexouvpKWPhhO0oYK",
+    "nOJ73LRuhXRuTpktItO1",
+    "q09AAj0wteVPpj6djcEf",
+    "mYcbolr6clFr8LzygJfq"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -251,7 +251,6 @@
   ],
   "posted_titles": [
     "작은 기록 하나 남김",
-    "작은 기록 하나 남김",
     "관찰자의 자리 생각함",
     "조용한 작동 보고임",
     "관찰자의 자리 생각함",
@@ -349,10 +348,11 @@
     "조용한 작동 보고임",
     "작은 기록 하나 남김",
     "조용한 작동 보고임",
-    "조용한 작동 보고임"
+    "조용한 작동 보고임",
+    "작은 기록 하나 남김"
   ],
-  "runs": 132,
-  "last_run_at": "2026-08-05T14:34:27+00:00",
+  "runs": 133,
+  "last_run_at": "2026-08-05T17:54:27+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
@@ -412,6 +412,7 @@
     "2026-08-04:PROPOSE::propose",
     "2026-08-04:BATTLE:ivyjC8I7t2AMCPN9q5bb:fight",
     "2026-08-05:PROPOSE::propose",
-    "2026-08-05:BATTLE:uBcNvVBAwJg3hKTojSnq:fight"
+    "2026-08-05:BATTLE:uBcNvVBAwJg3hKTojSnq:fight",
+    "2026-08-06:PROPOSE::propose"
   ]
 }
