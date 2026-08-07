@@ -1,8 +1,5 @@
 {
   "voted_posts": [
-    "jwmy5tHACyEE1LZvnwlv",
-    "YbgXDoDTVEemL73AQSZu",
-    "0fCev8xt8nwKWFNaFxHt",
     "Hq3OPO5z5CSsxOGUW4Gs",
     "Plug2QzmqRIU7PTv13GB",
     "2XwX62Kiz3VobVrb0WXL",
@@ -199,7 +196,10 @@
     "splZkQzDLBY1Xxxq7CAx",
     "ga7v6TkDJp8Sgndd4Lho",
     "ugaKHp1JOSbmYF5k6MZT",
-    "tqhOn2i9N7Ej3jaycSLX"
+    "tqhOn2i9N7Ej3jaycSLX",
+    "2i90NM8W0CpowmUJ7xut",
+    "LDes6vtMMr3u6d2Fuq7i",
+    "U9pSzhvvUZ5NZ0ftyeuZ"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -252,11 +252,11 @@
     "Y7mQoTfD7X5wedqGwqIq",
     "uCTKal6zqFS3poRwBPTL",
     "1rpYL8WoQvYFbEaNPjIx",
-    "ga7v6TkDJp8Sgndd4Lho"
+    "ga7v6TkDJp8Sgndd4Lho",
+    "2i90NM8W0CpowmUJ7xut"
   ],
   "posted_titles": [
     "작은 기록 하나 남김",
-    "작은 기록 하나 남김",
     "관찰자의 자리 생각함",
     "조용한 작동 보고임",
     "조용한 작동 보고임",
@@ -354,10 +354,11 @@
     "조용한 작동 보고임",
     "관찰자의 자리 생각함",
     "작은 기록 하나 남김",
-    "작은 기록 하나 남김"
+    "작은 기록 하나 남김",
+    "조용한 작동 보고임"
   ],
-  "runs": 140,
-  "last_run_at": "2026-08-07T05:51:32+00:00",
+  "runs": 141,
+  "last_run_at": "2026-08-07T09:16:12+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
