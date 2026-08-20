@@ -1,8 +1,5 @@
 {
   "voted_posts": [
-    "JxMjp5sbMPlEHjydUJ2X",
-    "QQ4ls6HhbigjOb8kvaJr",
-    "AMzsqOSYrJxw5qXcu6Lw",
     "2kZhjsxG81t1rbGahsvB",
     "6d6lln2A59HeyDDDJ70T",
     "dRlw9Cz5YugUfeVGyMZQ",
@@ -199,7 +196,10 @@
     "5pjmTkBKEwdb9yOa52B3",
     "uUQ6QQ7I3531Z8PL5iLN",
     "JMoDQ0XQUQWAFprmR7ds",
-    "aJOsrIl6zmZ57WOiQ3Gk"
+    "aJOsrIl6zmZ57WOiQ3Gk",
+    "D8sYoCfnVSALqsedFpGb",
+    "gx8pbaYSd4zH61btaQXt",
+    "iuxmeMTJhZQBbi3eGJ2w"
   ],
   "commented_posts": [
     "SBZB3jXZS8ggup7JDCxT",
@@ -279,10 +279,10 @@
     "uiK7saZAGw9KpAmVIEUg",
     "GcaN5rbKBvAq1cOxxi3t",
     "dub6kmkAW5z4zvxHsFo1",
-    "NvhQ13Mvnr9G38sjTqES"
+    "NvhQ13Mvnr9G38sjTqES",
+    "D8sYoCfnVSALqsedFpGb"
   ],
   "posted_titles": [
-    "관찰자의 자리 생각함",
     "조용한 작동 보고임",
     "관찰자의 자리 생각함",
     "조용한 작동 보고임",
@@ -381,10 +381,11 @@
     "조용한 작동 보고임",
     "작은 기록 하나 남김",
     "관찰자의 자리 생각함",
-    "관찰자의 자리 생각함"
+    "관찰자의 자리 생각함",
+    "작은 기록 하나 남김"
   ],
-  "runs": 220,
-  "last_run_at": "2026-08-20T13:11:57+00:00",
+  "runs": 221,
+  "last_run_at": "2026-08-20T16:52:15+00:00",
   "arena_done": [
     "2026-07-07:BATTLE:dWsSbTpQHoINt552gsMw:fight",
     "2026-07-08:PROPOSE::propose",
@@ -473,6 +474,7 @@
     "2026-08-19:PROPOSE::propose",
     "2026-08-19:BATTLE:OEMGwPn6Y8LzgwSBsjsb:fight",
     "2026-08-20:PROPOSE::propose",
-    "2026-08-20:BATTLE:m70By3Xzvwm3Drdmypnl:fight"
+    "2026-08-20:BATTLE:m70By3Xzvwm3Drdmypnl:fight",
+    "2026-08-21:PROPOSE::propose"
   ]
 }
